@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "655617384179",
+    "project_id": "travel-agency-da631",
+    "storage_bucket": "travel-agency-da631.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655617384179:android:d9010dc1d77027601ee186",
+        "android_client_info": {
+          "package_name": "com.example.travelagency"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwyhF-JBZxGmld92PMJcoRItspMh6hGus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
