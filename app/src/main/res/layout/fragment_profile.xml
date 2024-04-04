@@ -18,7 +18,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/my_info_title"
@@ -26,12 +27,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:text="Мои данные"
         android:fontFamily="sans-serif-medium"
+        android:text="Мои данные"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_title" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_title"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/info_email"
@@ -39,11 +41,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Мои Email"
+        android:text=""
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_info_title" />
+        app:layout_constraintTop_toBottomOf="@+id/my_info_title"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/info_name"
@@ -51,11 +54,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Мое имя"
+        android:text=""
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_email" />
+        app:layout_constraintTop_toBottomOf="@+id/info_email"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/info_phone"
@@ -63,27 +67,32 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Телефон"
+        android:text=""
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_name" />
+        app:layout_constraintTop_toBottomOf="@+id/info_name"
+        android:visibility="gone"/>
 
 
     <Button
         android:id="@+id/edit_info_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:backgroundTint="@color/green"
 
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/green"
         android:text="Редактировать"
         android:textAllCaps="false"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/my_info_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.691"
-        app:layout_constraintStart_toEndOf="@+id/info_phone"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginRight="30dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/my_info_title"
+        app:layout_constraintTop_toTopOf="@+id/my_info_title"
+        app:layout_constraintVertical_bias="0.538"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/log_out"
@@ -95,7 +104,8 @@
         android:textColor="@color/green"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/info_phone"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/delete_profile"
@@ -106,6 +116,18 @@
         android:text="Удалить аккаунт"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_out" />
+        app:layout_constraintTop_toBottomOf="@+id/log_out"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

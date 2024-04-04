@@ -3,6 +3,7 @@ package com.example.travelagency.database
 import android.content.ContentValues
 import android.util.Log
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.firestore
 
 class Database {
@@ -11,7 +12,7 @@ class Database {
         val user = hashMapOf(
             "email" to email,
             "name" to name,
-            "phone" to null,
+            "phone" to "",
             "password" to password,
             "role" to 0
         )
@@ -26,6 +27,29 @@ class Database {
                 Log.w(ContentValues.TAG, "Error with adding the user", e)
             }
 
+
+    }
+    fun updateUserData(userId: String, name: String, phone: String) {
+
+        val db = Firebase.firestore
+        /*
+        val userRef = db.collection("users").document(userId)
+
+        val userData = hashMapOf(
+            "name" to name,
+            "phone" to phone
+        )
+
+        userRef.set(userData, SetOptions.merge())
+
+         */
+        db.collection("users").document(userId)
+            .update(
+                mapOf(
+                    "name" to name,
+                    "phone" to phone,
+                ),
+            )
 
     }
 }

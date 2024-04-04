@@ -1,59 +1,95 @@
 package com.example.travelagency
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import com.example.travelagency.databinding.FragmentProfileBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentProfileBinding
+    private var name: String? = null
+    private var email: String? = null
+    private var phone: String? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        binding.progressBar.visibility = View.VISIBLE
+
+        val user = FirebaseAuth.getInstance().currentUser
+        val userId = user?.uid.toString()
+        val userDocRef = FirebaseFirestore.getInstance().collection("users").document(userId)
+
+        userDocRef.get().addOnSuccessListener { document ->
+
+            binding.progressBar.visibility = View.GONE
+
+            binding.profileTitle.visibility = View.VISIBLE
+            binding.myInfoTitle.visibility = View.VISIBLE
+            binding.editInfoBtn.visibility = View.VISIBLE
+            binding.logOut.visibility = View.VISIBLE
+            binding.deleteProfile.visibility = View.VISIBLE
+            binding.infoEmail.visibility = View.VISIBLE
+            binding.infoName.visibility = View.VISIBLE
+            binding.infoPhone.visibility = View.VISIBLE
+
+            if (document != null) {
+                name = document.getString("name")
+                email = document.getString("email")
+                phone = document.getString("phone")
+
+                binding.infoEmail.setText("E-mail: $email")
+                binding.infoName.setText("Имя: $name")
+
+                if (phone == ""){
+                    binding.infoPhone.setText("Телефон: Не указан")
+                } else{
+                    binding.infoPhone.setText("Телефон: $phone")
+                }
+
+
+            } else {
+                Log.d("TAG", "Документ не существует")
+            }
+        }
+
+        binding.editInfoBtn.setOnClickListener{
+            val intent = Intent(context, EditInfoActivity::class.java)
+            intent.putExtra("name", name)
+            intent.putExtra("email", email)
+            intent.putExtra("phone", phone)
+            startActivity(intent)
+        }
+
+        binding.logOut.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(context, SignInActivity::class.java)
+            startActivity(intent)
+
+
+        }
+
+        binding.deleteProfile.setOnClickListener {
+            val intent = Intent(context, SignInActivity::class.java)
+            startActivity(intent)
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
