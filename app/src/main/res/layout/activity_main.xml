@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu"
         android:background="@color/white"
-        android:outlineSpotShadowColor="@color/white" />
+        android:outlineSpotShadowColor="@color/white"/>
 
     <FrameLayout
         android:id="@+id/frame_layout"

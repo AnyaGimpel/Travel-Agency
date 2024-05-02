@@ -15,8 +15,16 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentToOpen = intent.getStringExtra("fragmentToOpen")
         if (fragmentToOpen != null) {
-            replaceFragment(ProfileFragment())
-            binding.bottomNavigationView.selectedItemId = R.id.profile
+
+            if (fragmentToOpen != null && fragmentToOpen == "HomeFragment") {
+                replaceFragment(HomeFragment()) // Заменяем на HomeFragment только если нужно открыть HomeFragment
+                binding.bottomNavigationView.selectedItemId = R.id.home // Устанавливаем выбранный элемент навигации на "home"
+            }
+
+            if (fragmentToOpen != null && fragmentToOpen == "ProfileFragment") {
+                replaceFragment(ProfileFragment())
+                binding.bottomNavigationView.selectedItemId = R.id.profile
+            }
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener{
