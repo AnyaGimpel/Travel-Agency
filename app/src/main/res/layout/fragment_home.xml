@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/search_tour"
         app:layout_constraintEnd_toEndOf="@+id/search_tour"
         app:layout_constraintTop_toTopOf="@+id/search_tour"
-        tools:src="@drawable/baseline_search_24" />
+        android:src="@drawable/baseline_search_24" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"

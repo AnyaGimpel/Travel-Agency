@@ -99,7 +99,7 @@ class ToursAdapter(private val toursList: ArrayList<Tours>, private val listener
                 } else {
                     val filterPattern = constraint.toString().toLowerCase().trim()
                     for (item in toursListFull) {
-                        if (item.name?.toLowerCase()?.contains(filterPattern) == true) {
+                        if (item.name?.toLowerCase()?.contains(filterPattern) == true || item.key_words?.toLowerCase()?.contains(filterPattern) == true || item.cities?.toLowerCase()?.contains(filterPattern) == true) {
                             filteredList.add(item)
                         }
                     }

@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity() {
                 replaceFragment(ProfileFragment())
                 binding.bottomNavigationView.selectedItemId = R.id.profile
             }
+
+            if (fragmentToOpen != null && fragmentToOpen == "CartFragment") {
+                replaceFragment(CartFragment())
+                binding.bottomNavigationView.selectedItemId = R.id.cart
+            }
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener{

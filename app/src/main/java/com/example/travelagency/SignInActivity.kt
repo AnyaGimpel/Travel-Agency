@@ -25,6 +25,8 @@ class SignInActivity : AppCompatActivity() {
         }
 
         binding.button.setOnClickListener {
+            binding.button.isClickable = false
+
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
 
@@ -36,12 +38,12 @@ class SignInActivity : AppCompatActivity() {
                         startActivity(intent)
                     } else {
                         Toast.makeText(this,"Неверный Email или пароль", Toast.LENGTH_SHORT).show()
-
+                        binding.button.isClickable = true
                     }
                 }
             } else {
                 Toast.makeText(this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show()
-
+                binding.button.isClickable = true
             }
         }
     }

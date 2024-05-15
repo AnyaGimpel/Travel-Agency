@@ -27,6 +27,8 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         binding.button.setOnClickListener {
+            binding.button.isClickable = false
+
             val email = binding.emailEt.text.toString()
             val name = binding.nameEt.text.toString()
             val pass = binding.passET.text.toString()
@@ -37,8 +39,10 @@ class SignUpActivity : AppCompatActivity() {
                 if (pass == confirmPass) {
                     if (pass.length < 6) {
                         Toast.makeText(this, "Пароль должен состоять минимум из 6 символов", Toast.LENGTH_SHORT).show()
+                        binding.button.isClickable = true
                     } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                         Toast.makeText(this, "Некорректный адрес электронной почты", Toast.LENGTH_SHORT).show()
+                        binding.button.isClickable = true
                     } else {
                         firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener { createUserTask ->
                             if (createUserTask.isSuccessful) {
@@ -54,16 +58,20 @@ class SignUpActivity : AppCompatActivity() {
                         }.addOnFailureListener { e ->
                             if (e is FirebaseAuthUserCollisionException) {
                                 Toast.makeText(this, "Пользователь с таким электронным адресом уже зарегистрирован", Toast.LENGTH_SHORT).show()
+                                binding.button.isClickable = true
                             } else {
                                 Toast.makeText(this, "Ошибка при регистрации: " + e.message, Toast.LENGTH_SHORT).show()
+                                binding.button.isClickable = true
                             }
                         }
                     }
                 } else {
                     Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show()
+                    binding.button.isClickable = true
                 }
             } else {
                 Toast.makeText(this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show()
+                binding.button.isClickable = true
             }
         }
     }
