@@ -101,4 +101,70 @@ class Database {
             }
     }
 
+    fun CallbackRequest(userId: String, userPhone: String, description: String, completion: (String?) -> Unit) {
+        checkIfRequestExists(userId) { exists ->
+            if (!exists) {
+                // Если заявка не существует, добавляем новую
+                val db = Firebase.firestore
+                val callBack = hashMapOf(
+                    "id_user" to userId,
+                    "user_phone" to userPhone,
+                    "description" to description
+                )
+
+                db.collection("callBack")
+                    .add(callBack)
+                    .addOnSuccessListener { documentReference ->
+                        val documentId = documentReference.id
+                        completion(documentId)
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(ContentValues.TAG, "Error adding tour", e)
+                        completion(null)
+                    }
+            } else {
+                // Если заявка уже существует, выполняем другие действия или возвращаем ошибку
+                completion(null)
+            }
+        }
+    }
+
+    fun checkIfRequestExists(userId: String, callback: (Boolean) -> Unit) {
+        val db = Firebase.firestore
+        val query = db.collection("callBack").whereEqualTo("id_user", userId)
+
+        query.get()
+            .addOnSuccessListener { documents ->
+                callback(!documents.isEmpty)
+            }
+            .addOnFailureListener {
+                // Обработка ошибки
+                callback(false)
+            }
+    }
+
+    fun deleteCallbackRequest(userId: String, completion: (Boolean) -> Unit) {
+        val db = Firebase.firestore
+        val callBackCollection = db.collection("callBack")
+
+        callBackCollection
+            .whereEqualTo("id_user", userId)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    document.reference.delete()
+                        .addOnSuccessListener {
+                            completion(true) // Успешно удалено
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(ContentValues.TAG, "Error deleting callback request", e)
+                            completion(false) // Ошибка при удалении
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w(ContentValues.TAG, "Error getting documents", e)
+                completion(false) // Ошибка при получении документов
+            }
+    }
 }

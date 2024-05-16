@@ -89,6 +89,12 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.help.setOnClickListener {
+            val intent = Intent(context, HelpActivity::class.java)
+            startActivity(intent)
+        }
+
+
         return view
     }
 

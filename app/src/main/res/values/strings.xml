@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TravelAgency</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="help_message">Если у Вас возникли воспросы, заполните форму ниже и наш специалист с Вами свяжется!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tour_details">TourDetailsActivity</string>
     <!-- Strings used for fragments for navigation -->
