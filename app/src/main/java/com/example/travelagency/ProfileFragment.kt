@@ -81,7 +81,6 @@ class ProfileFragment : Fragment() {
             val intent = Intent(context, SignInActivity::class.java)
             startActivity(intent)
 
-
         }
 
         binding.deleteProfile.setOnClickListener {

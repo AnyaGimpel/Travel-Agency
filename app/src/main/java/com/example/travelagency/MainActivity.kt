@@ -16,17 +16,17 @@ class MainActivity : AppCompatActivity() {
         val fragmentToOpen = intent.getStringExtra("fragmentToOpen")
         if (fragmentToOpen != null) {
 
-            if (fragmentToOpen != null && fragmentToOpen == "HomeFragment") {
-                replaceFragment(HomeFragment()) // Заменяем на HomeFragment только если нужно открыть HomeFragment
-                binding.bottomNavigationView.selectedItemId = R.id.home // Устанавливаем выбранный элемент навигации на "home"
+            if (fragmentToOpen == "HomeFragment") {
+                replaceFragment(HomeFragment())
+                binding.bottomNavigationView.selectedItemId = R.id.home
             }
 
-            if (fragmentToOpen != null && fragmentToOpen == "ProfileFragment") {
+            if (fragmentToOpen == "ProfileFragment") {
                 replaceFragment(ProfileFragment())
                 binding.bottomNavigationView.selectedItemId = R.id.profile
             }
 
-            if (fragmentToOpen != null && fragmentToOpen == "CartFragment") {
+            if (fragmentToOpen == "CartFragment") {
                 replaceFragment(CartFragment())
                 binding.bottomNavigationView.selectedItemId = R.id.cart
             }
@@ -40,9 +40,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.cart -> replaceFragment(CartFragment())
                 R.id.profile -> replaceFragment(ProfileFragment())
 
-                else ->{
-
-                }
+                else ->{  }
 
             }
             true

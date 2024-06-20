@@ -36,6 +36,7 @@ class SignInActivity : AppCompatActivity() {
                     if (it.isSuccessful) {
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+                        finish()
                     } else {
                         Toast.makeText(this,"Неверный Email или пароль", Toast.LENGTH_SHORT).show()
                         binding.button.isClickable = true
@@ -48,13 +49,13 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-
+/*
     override fun onStart() {
         super.onStart()
-
-//        if(firebaseAuth.currentUser != null){
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
+        if(firebaseAuth.currentUser != null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
+    */
 }

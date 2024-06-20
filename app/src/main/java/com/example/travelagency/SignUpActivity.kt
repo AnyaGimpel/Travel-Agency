@@ -21,9 +21,20 @@ class SignUpActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+
+        if (firebaseAuth.currentUser != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
+
+
         binding.textView.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.button.setOnClickListener {
@@ -54,6 +65,7 @@ class SignUpActivity : AppCompatActivity() {
                                 Toast.makeText(this, "Регистрация прошла успешно!", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
+                                finish()
                             }
                         }.addOnFailureListener { e ->
                             if (e is FirebaseAuthUserCollisionException) {

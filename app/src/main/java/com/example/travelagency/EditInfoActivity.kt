@@ -31,6 +31,7 @@ class EditInfoActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("fragmentToOpen", "ProfileFragment")
             startActivity(intent)
+            finish()
         }
 
         binding.button.setOnClickListener {
@@ -67,6 +68,10 @@ class EditInfoActivity : AppCompatActivity() {
                 else {
                     database.updateUserData(userId, newName, newPhone)
                     Toast.makeText(this, "Изменения сохранены", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("fragmentToOpen", "ProfileFragment")
+                    startActivity(intent)
+                    finish()
                 }
             }
             else {

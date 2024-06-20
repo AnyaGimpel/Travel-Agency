@@ -16,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu"
         android:background="@color/white"
-        android:outlineSpotShadowColor="@color/white"/>
+        android:outlineSpotShadowColor="@color/white"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"/>
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -25,7 +26,8 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white">
 
     </FrameLayout>
 
